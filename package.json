@@ -1,0 +1,21 @@
+{
+  "name": "last-git-commits",
+  "version": "1.2.4",
+  "description": "Read recent git commits from the default branch with optional JSON file cache",
+  "main": "index.js",
+  "exports": "./index.js",
+  "engines": {
+    "node": ">=18"
+  },
+  "keywords": [
+    "git",
+    "commits",
+    "log",
+    "cache"
+  ],
+  "license": "MIT",
+  "files": [
+    "index.js",
+    "README.md"
+  ]
+}
