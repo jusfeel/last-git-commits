@@ -1,11 +1,11 @@
-# last-git-commits
+# @jusfeel/last-git-commits
 
 Read the latest commits from a git repo’s default branch (`origin/HEAD`, else `main` / `master`), with an optional JSON file cache. No dependencies beyond Node.js.
 
 ## Install
 
 ```bash
-npm install last-git-commits
+npm install @jusfeel/last-git-commits
 ```
 
 ## Usage
@@ -16,7 +16,7 @@ const {
   getRecentCommitNotes,
   refreshCommitsCache,
   defaultOptions,
-} = require('last-git-commits');
+} = require('@jusfeel/last-git-commits');
 
 // Cached list (rebuilds synchronously on cold miss)
 const { entries } = getReleaseNotes({
@@ -38,7 +38,7 @@ Commit entries are `{ created_at, title, detail, author }` where `title` is the 
 The library only talks to git and the filesystem. In your route, call `refreshCommitsCache` with paths and `repoRoot` (optional `limit`; defaults to `DEFAULT_BUILD_LIMIT`), then map the result to HTTP or `throw` / `next(err)`:
 
 ```js
-const { refreshCommitsCache, defaultOptions } = require('last-git-commits');
+const { refreshCommitsCache, defaultOptions } = require('@jusfeel/last-git-commits');
 
 const opts = {
   ...defaultOptions('my-app'), // cache dir name under os.tmpdir(), or absolute path

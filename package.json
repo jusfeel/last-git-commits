@@ -1,5 +1,8 @@
 {
-  "name": "last-git-commits",
+  "name": "@jusfeel/last-git-commits",
+  "publishConfig": {
+    "access": "public"
+  },
   "version": "1.2.4",
   "description": "Read recent git commits from the default branch with optional JSON file cache",
   "author": "Hao <jusfeel@163.com>",
