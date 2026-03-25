@@ -2,6 +2,15 @@
   "name": "last-git-commits",
   "version": "1.2.4",
   "description": "Read recent git commits from the default branch with optional JSON file cache",
+  "author": "Hao <wanghao@nobleprog.cn>",
+  "homepage": "https://github.com/jusfeel/last-git-commits#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jusfeel/last-git-commits.git"
+  },
+  "bugs": {
+    "url": "https://github.com/jusfeel/last-git-commits/issues"
+  },
   "main": "index.js",
   "exports": "./index.js",
   "engines": {
