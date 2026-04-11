@@ -2,6 +2,7 @@
  * Recent commits from the repo’s default branch, with optional JSON cache on disk.
  *
  * @typedef {{ created_at: string, title: string, detail: string, author: string }} CommitEntry
+ * `created_at` is UTC ISO 8601 (`…Z`) derived from git’s committer date including its recorded offset.
  */
 
 const path = require('path');
@@ -92,7 +93,7 @@ function gitRecentCommits(gitBinary, repoRoot, branch, limit) {
     const stdout = execGit(
         gitBinary,
         repoRoot,
-        ['log', branch, '-n', String(limit), '--pretty=format:%H%x09%an%x09%s%x09%ci', '--no-color'],
+        ['log', branch, '-n', String(limit), '--pretty=format:%H%x09%an%x09%s%x09%cI', '--no-color'],
         { maxBuffer: 10 * 1024 * 1024 }
     );
     const entries = [];
@@ -109,9 +110,10 @@ function gitRecentCommits(gitBinary, repoRoot, branch, limit) {
         const full = line.slice(0, t1);
         const author = line.slice(t1 + 1, t2);
         const subject = line.slice(t2 + 1, t3);
-        const ci = line.slice(t3 + 1);
+        const ci = line.slice(t3 + 1).trim();
         const hash7 = full.slice(0, 7).toLowerCase();
-        const created_at = ci.replace('T', ' ').replace(/ [+-]\d{4}$/, '').slice(0, 19);
+        const parsed = new Date(ci);
+        const created_at = Number.isNaN(parsed.getTime()) ? ci : parsed.toISOString();
         entries.push({
             created_at,
             title: hash7,
